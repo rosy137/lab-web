@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Insert title here</title>
+        <style>
+            /*
+                pseudo selector(가상 선택자): 이벤트 또는 특정 조건을 만족하는 요소들을 찾을 때 사용하는 선택자.
+                - selector:pseudo-selector
+                - pseudo selector 종류
+                    - visited: 방문했던 사이트.
+                    - link: 방문하지 않았던 사이트
+                    - hover: 마우스가 요소 위에 있을 때.
+                    - active: 마우스 버튼을 누르고 있을 때
+            */
+            a#link-naver{
+                color: black; /*글자색*/
+                text-decoration: none; /*밑줄 제거*/
+                padding: 10px 20px;
+                border: 1px solid lightgray;
+            }
+            /*마우스가 a 태그 중에서 id 값이 link-naver인 요소 위에 있을 때*/
+            a#link-naver:hover{
+                background-color: purple;
+                color: white;
+            }
+            a#link-naver:active{
+                background-color: green;
+                color:white;
+            }
+            
+            a#link-daum{
+                display: inline-block;
+                width:80px;
+                text-align: center;
+                color:white;
+                text-decoration: none;
+                padding: 5px 10px; /* top -> right -> bottom -> left */
+                background-color: DodgerBlue;
+                font-weight: bolder;
+            }
+            a#link-daum:hover{
+                background-color: SlateBlue;
+            }
+        </style>
+	</head>
+	<body>
+		<h1>Link Style</h1>
+        <h2>pseudo Selector</h2>
+        
+        <a id="link-naver" href="http://www.naver.com/">네이버</a>
+        
+        <h2>Link Button</h2>
+        
+        <a id="link-daum" href="http://www.daum.net">다음</a>
+        
+	</body>
+</html>

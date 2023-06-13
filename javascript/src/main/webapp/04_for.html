@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>JavaScript 4</title>
+	</head>
+	<body>
+		<h1>JavaScript for 반복문</h1>
+        <div id="result"></div>
+        
+        
+        <script>
+        // div#id element를 찾음.
+        const result = document.getElementById('result');
+        
+        let html = ''; // 구구단 출력 결과를 덧붙일 문자열 변수.
+        for (let n = 1 ; n < 10 ; n ++){
+        	// 문자열 템플릿: `문자열 ${변수/식}`
+        	html += `2 * ${n} = ${2*n} <br/>`;
+        }
+        html += `<hr/>`;
+        /*result.innerHTML = html; */
+        
+        /* result.innerHTML += '<hr />'; */ //result.innerHTML = result.innerHTML + '<hr/>'
+        //TODO:  구구단 2단부터 9단까지 이어서 출력.
+        
+        
+        for (let i = 2; i < 10; i++ ){
+        	 for (let j = 1 ; j < 10 ;j++){
+        		 html += `${i} * ${j} = ${i*j} <br/>`;
+        	 }
+        	 html += `<br/>`;
+        }
+        html += `<hr/>`;
+        /* result2.innerHTML += html; */
+        
+        /* result.innerHTML += '<hr />'; */
+        //TODO: 구구단 2단은 2*2까지 9*9까지 이어서 출력.
+        
+        for (let i = 2; i < 10; i++ ){
+             for (let j = 1 ; j <= i ;j++){
+                 html += `${i} * ${j} = ${i*j} <br/>`;
+             }
+             html += `<br/>`;
+        }
+        
+        result.innerHTML += html;
+        /* result.innerHTML += '<hr />'; */
+        </script>
+        
+	</body>
+    
+</html>

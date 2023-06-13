@@ -1,0 +1,10 @@
+
+@charset "UTF-8"; /* CSS ㅍ파일의 인코딩 설정 */
+div{
+   border: 2px solid white; /*테두리 선의 두께 종류 색*/ 
+   margin: 16px; /*HTML 요소 바깥 여백*/
+   padding: 16px; /*HTML 요소 내부 여백*/
+}
+body{
+    background-color: black;
+}
