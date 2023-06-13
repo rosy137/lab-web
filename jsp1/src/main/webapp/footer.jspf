@@ -1,0 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
+
+<footer class="footer">
+    <address>
+    <p>(주)무한코딩</p>
+    <p>http://www.muhancoding.com/</p>
+    </address>
+</footer>
