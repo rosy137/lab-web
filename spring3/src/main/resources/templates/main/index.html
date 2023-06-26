@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http:/www.thymeleaf.org">
+<!-- th 태그 사용했을 때 나오는 경고 표시 제거 -->
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Spring Boot</title>
+	</head>
+	<body>
+		<header>
+            <h1>Spring Boot Project</h1>
+        </header>
+        <main>
+            <h1 th:text="'현재시간: '+${now}">현재 시간</h1>
+            <!-- 문자열 붙여줄 때 "'문자열'+ " -->
+            <h1 th:text="|현재시간: ${now}|">현재 시간</h1>
+            <!-- thymeleaf 태그 text 속성 value 같은 것으로 우선 적용됨. -->
+            <!-- 함수와 함께 쓸 때 "||" 파이프 연산자 사용 -->
+            <h1>현재시간: [[${now}]]</h1>
+            <!-- 안에서 직접 출력 -->
+        </main>
+	</body>
+</html>
