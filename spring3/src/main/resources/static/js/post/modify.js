@@ -6,17 +6,32 @@ document.addEventListener('DOMContentLoaded', () =>{
     const btnUpdate = document.querySelector('#btnUpdate');
     const btnDelete = document.querySelector('#btnDelete');
     const modifyForm = document.querySelector('#postModifyForm');
-    const id = document.querySelector('#id').value;
+    const id = document.querySelector('input#id').value;
     console.log(id);
     
-    btnUpdate.addEventListener('click', () => {
-        const check = confirm('save?');
+    btnDelete.addEventListener('click', () => {
+        const check = confirm('delete?');
         if(check){
-            modifyForm.action = './update?id=' + id;
+            modifyForm.action = './delete?id='+id;
             modifyForm.method = 'post';
             modifyForm.submit();
         }
     });
+    
+    btnUpdate.addEventListener('click', () => {
+		const title = document.querySelector('input#title').value;
+		const content = document.querySelector('textarea#content').value;
+		if(title === ''||content===''){
+			alert('check title n content')
+			return;
+		}
+		const check = confirm('save?')
+		if(check){
+			modifyForm.action = './update?id='+id;
+			modifyForm.method = 'post';
+			modifyForm.submit();
+		}
+	});
     
    
     

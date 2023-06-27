@@ -53,9 +53,9 @@ public class PostRepositoryTest {
         
     }
     
-    //@Test
+    @Test
     public void testUpdate() {
-        Post entity = postRepository.findById(83L).orElseThrow();
+        Post entity = postRepository.findById(43L).orElseThrow();
         // 'findById'의 리턴값은 Optional<Post> 
         // > 결과가 있으면 Post, 없으면 error
         // >> orElseThrow로 오류 잡아줌
@@ -75,13 +75,13 @@ public class PostRepositoryTest {
         // save() 메서드의 아규먼트가 DB에 없는 엔터티이면 insert, DB에 없는 엔터티이면 update를 실행.
         postRepository.saveAndFlush(entity);
         
-        entity = postRepository.findById(83L).orElseThrow();
+        entity = postRepository.findById(43L).orElseThrow();
         log.info("after update: {}", entity);
         log.info("after update modified time: {}", entity.getModifiedTime());
         
     }
     
-    @Test
+    //@Test
     public void testDelete() {
         long count = postRepository.count(); // DB 테이블의 행의 개수(엔터티 개수)
         log.info("삭제 전 count = {}", count);

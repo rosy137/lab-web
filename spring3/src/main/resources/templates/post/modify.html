@@ -10,7 +10,11 @@
         </div>
         <div class="card-body">
             <form id="postModifyForm">
-                <div id="id" th:text="${post.id}"></div>
+                <div>
+                    <label class="form-label d-none" for="id">번호</label>
+                    <input class="form-control"
+                        id="id" th:value="${post.id}" readonly />
+                </div>
                 <div class="my-2 form-floating">
                     <input class="form-control" id="title" type="text"
                         name="title" th:value="${post.title}" placeholder="Leave a comment here"
@@ -23,8 +27,13 @@
                         placeholder="Leave a comment here" required></textarea>
                     <label for="content">내용</label>
                 </div>
+                <div>
+                    <label class="form-label d-none" for="author">작성자</label>
+                    <input class="form-control" 
+                        id="author" th:value="${post.author}" readonly />
+                </div>
             </form>
-            <div class="text-center">
+            <div class="text-center mt-2">
                 <a class="btn btn-sm btn-warning"
                     id="btnUpdate">수정</a>
                 <a class="btn btn-sm btn-outline-warning"

@@ -66,6 +66,19 @@ public class PostController {
          
      }
      
+     @PostMapping("/update")
+     public String update(PostUpdateDto dto, long id) {
+    	 log.info("update(dto={}, id={})",dto,id);
+    	 postService.update(dto, id);
+    	 return "redirect:/post/details?id="+id;
+     }
      
+     @PostMapping("/delete")
+     public String delete(long id) {
+    	 log.info("delete(id={})",id);
+    	 postService.delete(id);
+    	 log.info("삭제 결과={}",id);
+    	 return "redirect:/post";
+     }
      
 }

@@ -10,7 +10,12 @@
         </div>
         <div class="card-body">
             <form action="">
-                <h2 class="my-2 fw-bold" th:text="${post.title}"></h2>
+            	 <div>
+                    <label class="form-label d-none" for="id">번호</label>
+                    <input class="form-control d-none"
+                        id="id" th:value="${post.id}" readonly />
+                </div>
+                <h2 class="m-2 fw-bold" th:text="${post.title}"></h2>
                 <small class="ms-2 my-2" th:text="${post.author}"></small>
                 <hr/>
                 <div class="mx-2" style="height: 300px;" th:text="${post.content}"></div>
@@ -23,8 +28,12 @@
             <div class="text-center">
                 <a class="btn btn-sm btn-warning"
                     th:href="@{ /post/modify?id={id} (id = ${post.id})}">수정</a>
+                <a class="btn btn-sm btn-outline-warning d-none"
+                    id="btnDelete">삭제</a>
             </div>
         </div>
     </div>
 </main>
+<th:block layout:fragment="myscripts">
+</th:block>
 </html>

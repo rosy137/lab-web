@@ -44,6 +44,18 @@ public class PostService {
     public Post read(Long id) {
         return postRepository.findById(id).orElseThrow();
     }
+
+    public Post update(PostUpdateDto dto, long id) {
+    	log.info("update({})", dto);
+    	Post entity = postRepository.findById(id).orElseThrow();
+    	entity.update(dto);
+    	return postRepository.saveAndFlush(entity);
+    }
+    
+	public void delete(long id) {
+		log.info("delete(id={})",id);
+		postRepository.deleteById(id);
+	}
     
 
     
