@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.itwill.spring3.dto.PostCreateDto;
+import com.itwill.spring3.dto.PostUpdateDto;
 import com.itwill.spring3.repository.post.Post;
 import com.itwill.spring3.service.PostService;
 
@@ -37,8 +38,6 @@ public class PostController {
      @GetMapping("/create")
      public void create() {
          log.info("create() GET");
-         
-         
      }
     
      @PostMapping("/create")
@@ -66,4 +65,7 @@ public class PostController {
          // details -> details.html, modify -> modify.html
          
      }
+     
+     
+     
 }

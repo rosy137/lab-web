@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.itwill.spring3.dto.PostCreateDto;
+import com.itwill.spring3.dto.PostUpdateDto;
 import com.itwill.spring3.repository.post.Post;
 import com.itwill.spring3.repository.post.PostRepository;
 
@@ -43,5 +44,7 @@ public class PostService {
     public Post read(Long id) {
         return postRepository.findById(id).orElseThrow();
     }
+    
+
     
 }
