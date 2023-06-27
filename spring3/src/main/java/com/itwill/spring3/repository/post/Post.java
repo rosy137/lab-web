@@ -1,7 +1,5 @@
 package com.itwill.spring3.repository.post;
 
-import java.security.PublicKey;
-
 import com.itwill.spring3.dto.PostUpdateDto;
 import com.itwill.spring3.repository.BaseTimeEntity;
 
@@ -32,7 +30,7 @@ public class Post extends BaseTimeEntity {
 
     @Id //Primary key 제약조건
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "POSTS_SEQ_GEN")
-    private long id;
+    private Long id;
     
     @Column(nullable = false) // Not Null 제약 조건
     private String title;

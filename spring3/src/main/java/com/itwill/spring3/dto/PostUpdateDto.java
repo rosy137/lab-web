@@ -1,6 +1,5 @@
 package com.itwill.spring3.dto;
 
-import org.springframework.transaction.annotation.Transactional;
 
 import lombok.Data;
 

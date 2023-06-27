@@ -6,33 +6,30 @@
 <main layout:fragment="main">
     <div class="my-2 card">
         <div class="card-header text-center d-none">
-            <h1>새 포스트 작성 페이지</h1>
+            <h1>수정 페이지</h1>
         </div>
         <div class="card-body">
-            <form method="post">
+            <form id="postModifyForm">
+                <div class="d-none" th:value="${post.id}"></div>
                 <div class="my-2 form-floating">
                     <input class="form-control" id="title" type="text"
-                        name="title" placeholder="Leave a comment here"
+                        name="title" th:value="${post.title}" placeholder="Leave a comment here"
                         required autofocus /> <label for="title">제목</label>
                 </div>
                 <div class="my-2 form-floating">
-                    <textarea class="form-control"
+                    <textarea class="form-control" 
                         style="height: 300px;" id="content"
-                        name="content"
+                        name="content" th:text="${post.content}"
                         placeholder="Leave a comment here" required></textarea>
                     <label for="content">내용</label>
                 </div>
-                <div class="my-2 form-floating">
-                    <textarea class="form-control" id="author"
-                        name="author" placeholder="Leave a comment here"
-                        required></textarea>
-                    <label for="author">작성자</label>
-                </div>
-                <div class="text-center">
-                    <input class="btn btn-warning col-4" type="submit"
-                        value="등록" />
-                </div>
             </form>
+            <div class="text-center">
+                <a class="btn btn-sm btn-warning"
+                    id="btnUpdate">수정</a>
+                <a class="btn btn-sm btn-outline-warning"
+                    id="btnDelete">삭제</a>
+            </div>
         </div>
     </div>
 </main>

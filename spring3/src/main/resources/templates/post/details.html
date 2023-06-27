@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http:/www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout/base_layout}">
+
+<main layout:fragment="main">
+    <div class="my-2 card">
+        <div class="card-header text-center d-none">
+            <h1>디테일 페이지</h1>
+        </div>
+        <div class="card-body">
+            <form action="">
+                <h2 class="my-2 fw-bold" th:text="${post.title}"></h2>
+                <small class="ms-2 my-2" th:text="${post.author}"></small>
+                <hr/>
+                <div class="mx-2" style="height: 300px;" th:text="${post.content}"></div>
+                <hr/>
+                <div class="text-end">
+                    <small th:text="${ #temporals.format(post.createdTime, 'yy/MM/dd HH:mm:ss')}" ></small>
+                     / <small th:text="${ #temporals.format(post.modifiedTime, 'yy/MM/dd HH:mm:ss')}"></small>
+                </div>
+            </form>
+            <div class="text-center">
+                <a class="btn btn-sm btn-warning"
+                    th:href="@{ /post/modify?id={id} (id = ${post.id})}">수정</a>
+            </div>
+        </div>
+    </div>
+</main>
+</html>

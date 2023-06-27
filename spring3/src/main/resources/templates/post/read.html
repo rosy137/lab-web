@@ -1,9 +1,41 @@
 <!DOCTYPE html>
 <html xmlns:th="http:/www.thymeleaf.org"
-        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-        layout:decorate="~{layout/base_layout}">
-        
-        <main layout:fragment="main">
-            <h1>포스트 목록 페이지</h1>
-        </main>
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout/base_layout}">
+
+<main layout:fragment="main">
+    <div>
+        <h1 class="d-none">포스트 목록 페이지</h1>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th class="text-center" scope="col">No</th>
+                        <th class="text-center" scope="col">Title</th>
+                        <th class="text-center" scope="col">Author</th>
+                        <th class="text-center" scope="col">Modified
+                            Time</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    <tr th:each="post: ${ posts }">
+                        <th scope="row" class="col-1 text-center"
+                            th:text="${ post.id }"></th>
+                        <td class="col"><a
+                            th:href="@{/post/details?id={id} (id=${post.id}) }"
+                            th:text="${ post.title }"
+                            class="link-dark link-underline-opacity-0"></a>
+                        </td>
+                        <td class="col-2 text-center"
+                            th:text="${ post.author }"></td>
+                        <td class="col-3 text-center"
+                            th:text="${ #temporals.format(post.modifiedTime, 'yy/MM/dd HH:mm:ss')}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
 </html>
