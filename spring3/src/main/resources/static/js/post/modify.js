@@ -4,19 +4,9 @@
  */
 document.addEventListener('DOMContentLoaded', () =>{
     const btnUpdate = document.querySelector('#btnUpdate');
-    const btnDelete = document.querySelector('#btnDelete');
     const modifyForm = document.querySelector('#postModifyForm');
     const id = document.querySelector('input#id').value;
     console.log(id);
-    
-    btnDelete.addEventListener('click', () => {
-        const check = confirm('delete?');
-        if(check){
-            modifyForm.action = './delete?id='+id;
-            modifyForm.method = 'post';
-            modifyForm.submit();
-        }
-    });
     
     btnUpdate.addEventListener('click', () => {
 		const title = document.querySelector('input#title').value;

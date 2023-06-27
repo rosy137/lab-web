@@ -9,7 +9,7 @@
             <h1>디테일 페이지</h1>
         </div>
         <div class="card-body">
-            <form action="">
+            <form id="postDeleteForm">
             	 <div>
                     <label class="form-label d-none" for="id">번호</label>
                     <input class="form-control d-none"
@@ -28,12 +28,13 @@
             <div class="text-center">
                 <a class="btn btn-sm btn-warning"
                     th:href="@{ /post/modify?id={id} (id = ${post.id})}">수정</a>
-                <a class="btn btn-sm btn-outline-warning d-none"
+                <a class="btn btn-sm btn-outline-warning"
                     id="btnDelete">삭제</a>
             </div>
         </div>
     </div>
 </main>
 <th:block layout:fragment="myscripts">
+	<script src="/js/post/delete.js"></script>
 </th:block>
 </html>

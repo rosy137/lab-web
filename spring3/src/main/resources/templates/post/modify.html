@@ -12,7 +12,7 @@
             <form id="postModifyForm">
                 <div>
                     <label class="form-label d-none" for="id">번호</label>
-                    <input class="form-control"
+                    <input class="form-control d-none"
                         id="id" th:value="${post.id}" readonly />
                 </div>
                 <div class="my-2 form-floating">
@@ -29,15 +29,13 @@
                 </div>
                 <div>
                     <label class="form-label d-none" for="author">작성자</label>
-                    <input class="form-control" 
+                    <input class="form-control d-none" 
                         id="author" th:value="${post.author}" readonly />
                 </div>
             </form>
             <div class="text-center mt-2">
                 <a class="btn btn-sm btn-warning"
-                    id="btnUpdate">수정</a>
-                <a class="btn btn-sm btn-outline-warning"
-                    id="btnDelete">삭제</a>
+                    id="btnUpdate">수정 등록</a>
             </div>
         </div>
     </div>
