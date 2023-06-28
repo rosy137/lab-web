@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.itwill.spring3.dto.PostCreateDto;
+import com.itwill.spring3.dto.PostSearchDto;
 import com.itwill.spring3.dto.PostUpdateDto;
 import com.itwill.spring3.repository.post.Post;
 import com.itwill.spring3.service.PostService;
@@ -67,10 +68,10 @@ public class PostController {
      }
      
      @PostMapping("/update")
-     public String update(PostUpdateDto dto, long id) {
-    	 log.info("update(dto={}, id={})",dto,id);
-    	 postService.update(dto, id);
-    	 return "redirect:/post/details?id="+id;
+     public String update(PostUpdateDto dto) {
+    	 log.info("update(dto={}, id={})",dto);
+    	 postService.update(dto);
+    	 return "redirect:/post/details?id="+dto.getId();
      }
      
      @PostMapping("/delete")
@@ -79,6 +80,16 @@ public class PostController {
     	 postService.delete(id);
     	 log.info("삭제 결과={}",id);
     	 return "redirect:/post";
+     }
+     
+     @GetMapping("/search")
+     public String search(PostSearchDto dto, Model model) {
+         log.info("search(dto={})", dto);
+         
+         // TODO postService의 검색 기능 호출:
+         List<Post> list = postService.search(dto);
+         model.addAttribute("posts",list);
+         return "/post/read";
      }
      
 }

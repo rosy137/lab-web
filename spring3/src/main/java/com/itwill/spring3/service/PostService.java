@@ -1,10 +1,13 @@
 package com.itwill.spring3.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.itwill.spring3.dto.PostCreateDto;
+import com.itwill.spring3.dto.PostSearchDto;
 import com.itwill.spring3.dto.PostUpdateDto;
 import com.itwill.spring3.repository.post.Post;
 import com.itwill.spring3.repository.post.PostRepository;
@@ -45,9 +48,19 @@ public class PostService {
         return postRepository.findById(id).orElseThrow();
     }
 
-    public Post update(PostUpdateDto dto, long id) {
+    @Transactional
+    public Post update(PostUpdateDto dto) {
     	log.info("update({})", dto);
-    	Post entity = postRepository.findById(id).orElseThrow();
+    	
+    	// (1) 메서드에 @Transactional 애너테이션을 설정 
+    	// (2) DB에서 엔터티를 검색 
+    	// (3) 검색한 엔터티를 수정
+    	// 트랜잭션이 끝나는 시점에 DB 업데이트가 자동으로 수행
+    	
+    	//Post entity = postRepository.findById(id).orElseThrow();
+    	//entity.update(dto);
+    	
+    	Post entity = postRepository.findById(dto.getId()).orElseThrow();
     	entity.update(dto);
     	return postRepository.saveAndFlush(entity);
     }
@@ -57,6 +70,24 @@ public class PostService {
 		postRepository.deleteById(id);
 	}
     
-
+	@Transactional(readOnly = true)
+	public List<Post> search(PostSearchDto dto){
+        List<Post> list = null;
+        switch(dto.getType()) {
+        case "t" :
+            list = postRepository.findByTitleContainsIgnoreCaseOrderByIdDesc(dto.getKeyword());
+            break;
+        case "c" :
+            list =  postRepository.findByContentContainsIgnoreCaseOrderByIdDesc(dto.getKeyword());
+            break;
+        case "tc" :
+            list =  postRepository.findByTitleContainsIgnoreCaseOrContentContainsIgnoreCaseOrderByIdDesc(dto.getKeyword(), dto.getKeyword());
+            break;
+        case "a" :
+            list =  postRepository.findByAuthorContainsIgnoreCaseOrderByIdDesc(dto.getKeyword());
+            break;
+        }
+        return list;
+    }
     
 }

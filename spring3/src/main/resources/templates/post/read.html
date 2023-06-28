@@ -35,6 +35,26 @@
                     </tr>
                 </tbody>
             </table>
+            <div class="">
+                <form method="get" th:action="@{/post/search}">
+                    <div class="input-group">
+                        <div class="col-3">
+                            <select class="form-select" name="type">
+                                <option value="t">title</option>
+                                <option value="c">content</option>
+                                <option value="tc">title+content</option>
+                                <option value="a">author</option>
+                            </select>
+                        </div>
+                        <input class="form-control" id="keyword"
+                            name="keyword" type="text"
+                            placeholder="keyword"
+                            aria-describedby="btnSearch" required /> <input
+                            class="btn btn-warning" type="submit"
+                            value="search" id="btnSearch" />
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </main>

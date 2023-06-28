@@ -12,7 +12,7 @@
             <form id="postModifyForm">
                 <div>
                     <label class="form-label d-none" for="id">번호</label>
-                    <input class="form-control d-none"
+                    <input class="form-control d-none" name="id"
                         id="id" th:value="${post.id}" readonly />
                 </div>
                 <div class="my-2 form-floating">
@@ -34,8 +34,7 @@
                 </div>
             </form>
             <div class="text-center mt-2">
-                <a class="btn btn-sm btn-warning"
-                    id="btnUpdate">수정 등록</a>
+                <a class="btn btn-sm btn-warning" id="btnUpdate">수정 등록</a>
             </div>
         </div>
     </div>
