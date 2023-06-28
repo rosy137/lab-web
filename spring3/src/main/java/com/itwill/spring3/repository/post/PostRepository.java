@@ -1,19 +1,13 @@
 package com.itwill.spring3.repository.post;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.transaction.annotation.Transactional;
-
-import com.itwill.spring3.dto.PostSearchDto;
 
 public interface PostRepository extends JpaRepository<Post, Long> {
 
-    Post findById(int id);
-    
     // id 내림차순 정렬:
     // select * from POSTS order by ID desc
     List<Post> findByOrderByIdDesc();

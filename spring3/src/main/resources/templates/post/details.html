@@ -25,12 +25,22 @@
                      / <small th:text="${ #temporals.format(post.modifiedTime, 'yy/MM/dd HH:mm:ss')}"></small>
                 </div>
             </form>
-            <div class="text-center">
+            <div class="text-center mt-2">
                 <a class="btn btn-sm btn-warning"
                     th:href="@{ /post/modify?id={id} (id = ${post.id})}">수정</a>
                 <a class="btn btn-sm btn-outline-warning"
                     id="btnDelete">삭제</a>
             </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <span class="text-uppercase font-monospace">reply#</span>
+            <span class="text-uppercase font-monospace" id="replyCount" th:text="${replyCount}"></span>
+            <button class="btn btn-outline-warning btn-sm" id="btnToggleReply">보이기</button>
+        </div>    
+        <div class="card-body">
+            
         </div>
     </div>
 </main>

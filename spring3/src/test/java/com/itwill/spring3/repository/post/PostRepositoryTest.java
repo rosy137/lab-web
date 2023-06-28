@@ -25,9 +25,9 @@ public class PostRepositoryTest {
         }
     }
     
-    //@Test
+    @Test
     public void testFindById() {
-        Post post = postRepository.findById(61);
+        Post post = postRepository.findById(1L).orElseThrow();
         log.info(post.toString());
     }
     
@@ -53,7 +53,7 @@ public class PostRepositoryTest {
         
     }
     
-    @Test
+    //@Test
     public void testUpdate() {
         Post entity = postRepository.findById(43L).orElseThrow();
         // 'findById'의 리턴값은 Optional<Post> 

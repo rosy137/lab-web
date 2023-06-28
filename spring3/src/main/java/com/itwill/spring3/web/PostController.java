@@ -1,6 +1,5 @@
 package com.itwill.spring3.web;
 
-import java.lang.ProcessBuilder.Redirect;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -13,7 +12,9 @@ import com.itwill.spring3.dto.PostCreateDto;
 import com.itwill.spring3.dto.PostSearchDto;
 import com.itwill.spring3.dto.PostUpdateDto;
 import com.itwill.spring3.repository.post.Post;
+import com.itwill.spring3.repository.reply.Reply;
 import com.itwill.spring3.service.PostService;
+import com.itwill.spring3.service.ReplyService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +26,7 @@ import lombok.extern.slf4j.Slf4j;
 public class PostController {
 
     private final PostService postService;
+    private final ReplyService replyService;
     
     @GetMapping
     public String read(Model model) {
@@ -60,6 +62,10 @@ public class PostController {
          
          // 결과를 model에 저장.
          model.addAttribute("post", post);
+         
+         // Replies 테이블에서 해당 포스트에 달린 댓글 개수를 검색
+         List<Reply> replyList = replyService.read(post);
+         model.addAttribute("replyCount", replyList.size());
          
          // 컨트롤러 메서드의 리턴값이 없는 경우(void인 경우),
          // 뷰의 이름은 요청 주소와 같다!
