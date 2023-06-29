@@ -39,7 +39,7 @@ public class ReplyRepositoryTest {
     @Test
     public void testFindByPost() {
         Post post = postRepository.findById(1L).orElseThrow();
-        List<Reply> list = replyRepository.findByPost(post);
+        List<Reply> list = replyRepository.findByPostOrderByIdDesc(post);
         for(Reply r: list) {
             log.info(r.toString());
         }
