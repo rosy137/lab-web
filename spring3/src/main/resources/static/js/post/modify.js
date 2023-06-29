@@ -12,11 +12,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const title = document.querySelector('#title').value;
         const content = document.querySelector('#content').value;
         if (title === '' || content === '') {
-            alert('제목과 내용은 반드시 입력...');
+            alert('cant insert blank');
             return;
         }
         
-        const result = confirm('변경된 내용을 업데이트할까요?')
+        const result = confirm('UPDATE?')
         if (!result) {
             return;
         }
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const btnDelete = document.querySelector('#btnDelete');
     btnDelete.addEventListener('click', (e) => {
-        const result = confirm('정말 삭제할까요?');
+        const result = confirm('DELETE?');
         if (!result) {
             return;
         }

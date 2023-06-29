@@ -21,6 +21,29 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
     
+    //댓글 삭제 버튼 클릭을 처리하는 이벤트 리스너
+    const deleteReply= (e) => {
+        //console.log(e.target);
+        const result = confirm('DELETE?');
+        if(!result){
+            return;
+        }
+        const id = e.target.getAttribute('data-id');
+        const reqUrl = `/api/reply/${id}`;
+        
+        axios
+            .delete(reqUrl) // ajax DELETE 요청
+            .then((response) => {
+                console.log(response);
+                
+                getRepliesWithPostId();
+            }) // 성공 응답일 때 실행할 콜백 등록
+            .catch((error) => console.log(error)); // 실패 응답일 때
+    }
+    
+    const modifyReply =(e) => {
+        console.log(e.target);
+    }
     
     const makeReplyElements = (data) => {
         // 댓글 개수를 배열의 원소 개수로 업데이트
@@ -43,8 +66,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         <span class="fw-bold">${reply.writer}</span>
                     </div>
                     <div class="col text-end">
-                        <button class="btnDelete btn btn-sm btn-warning">MOD</button>
-                        <button class="btnModify btn btn-sm btn-outline-warning">DEL</button>
+                        <button class="btnModify btn btn-sm btn-warning" data-id="${reply.id}">MOD</button>
+                        <button class="btnDelete btn btn-sm btn-outline-warning" data-id="${reply.id}">DEL</button>
                     </div>
                 </div>
                 <div class="mb-2">${reply.replyText}</div>
@@ -54,6 +77,18 @@ document.addEventListener('DOMContentLoaded', () => {
         
         //작성된 HTML 문자열을 div 요소의 innerHTML로 설정.
         replies.innerHTML = htmlStr;
+        
+        //모든 댓글 삭제 버튼들에게 이벤트 리스너를 등록
+        const btnDeletes = document.querySelectorAll('button.btnDelete');
+        for(let btn of btnDeletes){
+            btn.addEventListener('click', deleteReply);
+        }
+        
+        // 수정 버튼
+        const btnModifies = document.querySelectorAll('button.btnModify');
+        for(let btn of btnModifies){
+            btn.addEventListener('click', modifyReply);
+        }
     };
     
     // 포스트 번호에 달려 있는 댓글 목록을 (Ajax 요청으로) 가져오는 함수:
@@ -99,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
             .then((response) => {
                 console.log(response);
                 // 댓글목록 새로고침
-                getRepliesWithPostId(postId);
+                getRepliesWithPostId();
                 // textarea 비우기
                 document.querySelector('input#replyText').value = '';
             }) //성공 응답(response)일 때 실행할 콜백 등록

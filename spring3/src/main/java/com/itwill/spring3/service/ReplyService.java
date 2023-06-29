@@ -22,6 +22,14 @@ public class ReplyService {
     private final ReplyRepository replyRepository;
     private final PostRepository postRepository;
     
+    
+    public void delete(long id) {
+        log.info("delete(id = {})", id);
+        
+        //DB replies 테이블에서 ID(고유키)로 댓글 삭제
+        replyRepository.deleteById(id);
+    }
+    
     @Transactional(readOnly = true)
     public List<Reply> read(Long postId){
         log.info("read(postId={})", postId);
