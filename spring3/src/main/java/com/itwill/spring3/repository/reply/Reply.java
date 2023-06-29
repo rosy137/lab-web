@@ -1,5 +1,6 @@
 package com.itwill.spring3.repository.reply;
 
+import com.itwill.spring3.dto.reply.ReplyUpdateDto;
 import com.itwill.spring3.repository.BaseTimeEntity;
 import com.itwill.spring3.repository.post.Post;
 
@@ -21,6 +22,7 @@ import lombok.ToString;
 
 @NoArgsConstructor
 @Getter
+@Setter
 @AllArgsConstructor
 @Builder
 @ToString(exclude = {"post"} )
@@ -42,4 +44,9 @@ public class Reply extends BaseTimeEntity {
     
     @Column(nullable = false)
     private String writer; // 댓 작성자
+    
+    public Reply update(ReplyUpdateDto dto) {
+        this.replyText = dto.getUpdateText();
+        return this;
+    }
 }

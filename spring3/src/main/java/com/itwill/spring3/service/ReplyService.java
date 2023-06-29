@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.itwill.spring3.dto.reply.ReplyCreateDto;
+import com.itwill.spring3.dto.reply.ReplyUpdateDto;
 import com.itwill.spring3.repository.post.Post;
 import com.itwill.spring3.repository.post.PostRepository;
 import com.itwill.spring3.repository.reply.Reply;
@@ -76,6 +77,15 @@ public class ReplyService {
         replyRepository.saveAndFlush(entity);
         
         return entity;
+    }
+    
+    public Reply update(ReplyUpdateDto dto) {
+        log.info("update(dto={})", dto);
+        
+        Reply reply = replyRepository.findById(dto.getReplyId()).orElseThrow();
+        
+        reply.update(dto);
+        return replyRepository.saveAndFlush(reply);
     }
     
 }

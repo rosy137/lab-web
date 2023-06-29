@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         axios
             .delete(reqUrl) // ajax DELETE 요청
-            .then((response) => {
+            .then((response) => { //then(function ()) 익명함수
                 console.log(response);
                 
                 getRepliesWithPostId();
@@ -41,8 +41,30 @@ document.addEventListener('DOMContentLoaded', () => {
             .catch((error) => console.log(error)); // 실패 응답일 때
     }
     
-    const modifyReply =(e) => {
-        console.log(e.target);
+    const updateReply =(e) => {
+        //console.log(e.target);
+        const replyId = e.target.getAttribute('data-id');
+        const textAreaId = `textarea#replyText_${replyId}`;
+        //console.log(document.querySelector(textAreaId));
+        const updateText = document.querySelector(textAreaId).value;
+                
+        if(updateText === ''){
+            alert('cannot input blank');
+            return;
+        }
+        
+        const data = {replyId, updateText};
+
+        const reqUrl = '/api/reply/update';
+        
+         axios
+            .post(reqUrl,data)//Ajax POST 방식 요청을 보냄.
+            .then((response) => {
+                console.log(response);
+                // 댓글목록 새로고침
+                getRepliesWithPostId();
+            }) //성공 응답(response)일 때 실행할 콜백 등록
+            .catch((error) => console.log(error)); //실패(error)일 때 실행할 콜백 등록.
     }
     
     const makeReplyElements = (data) => {
@@ -70,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <button class="btnDelete btn btn-sm btn-outline-warning" data-id="${reply.id}">DEL</button>
                     </div>
                 </div>
-                <div class="mb-2">${reply.replyText}</div>
+                <textarea id="replyText_${reply.id}" class="my-2 form-control border-warning bg-transparent">${reply.replyText}</textarea>
             </div>
             `;
         }
@@ -87,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // 수정 버튼
         const btnModifies = document.querySelectorAll('button.btnModify');
         for(let btn of btnModifies){
-            btn.addEventListener('click', modifyReply);
+            btn.addEventListener('click', updateReply);
         }
     };
     

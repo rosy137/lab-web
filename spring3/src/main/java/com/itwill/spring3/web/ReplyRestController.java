@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.itwill.spring3.dto.reply.ReplyCreateDto;
+import com.itwill.spring3.dto.reply.ReplyUpdateDto;
 import com.itwill.spring3.repository.reply.Reply;
 import com.itwill.spring3.service.ReplyService;
 
@@ -42,6 +43,13 @@ public class ReplyRestController {
         
         Reply reply = replyService.create(dto);
         
+        return ResponseEntity.ok(reply);
+    }
+    
+    @PostMapping("/update")
+    public ResponseEntity<Reply> update(@RequestBody ReplyUpdateDto dto) {
+        log.info("update(dto={})", dto);
+        Reply reply = replyService.update(dto);
         return ResponseEntity.ok(reply);
     }
     
