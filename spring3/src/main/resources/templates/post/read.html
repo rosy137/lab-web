@@ -7,30 +7,30 @@
     <div>
         <h1 class="d-none">포스트 목록 페이지</h1>
     </div>
-    <div class="card">
+    <div class="card bg-transparent border-dark">
         <div class="card-body">
-            <table class="table table-hover">
+            <table class="table table-hover ">
                 <thead>
                     <tr>
-                        <th class="text-center" scope="col">No</th>
-                        <th class="text-center" scope="col">Title</th>
-                        <th class="text-center" scope="col">Author</th>
-                        <th class="text-center" scope="col">Modified
+                        <th class="text-center bg-transparent" scope="col">No</th>
+                        <th class="text-center bg-transparent" scope="col">Title</th>
+                        <th class="text-center bg-transparent" scope="col">Author</th>
+                        <th class="text-center bg-transparent" scope="col">Modified
                             Time</th>
                     </tr>
                 </thead>
                 <tbody class="table-group-divider">
-                    <tr th:each="post: ${ posts }">
-                        <th scope="row" class="col-1 text-center"
+                    <tr th:each="post: ${ posts }" class="border-dark">
+                        <th scope="row" class="col-1 text-center bg-transparent"
                             th:text="${ post.id }"></th>
-                        <td class="col"><a
+                        <td class="col bg-transparent"><a
                             th:href="@{/post/details?id={id} (id=${post.id}) }"
                             th:text="${ post.title }"
                             class="link-dark link-underline-opacity-0"></a>
                         </td>
-                        <td class="col-2 text-center"
+                        <td class="col-2 text-center bg-transparent"
                             th:text="${ post.author }"></td>
-                        <td class="col-3 text-center"
+                        <td class="col-3 text-center bg-transparent"
                             th:text="${ #temporals.format(post.modifiedTime, 'yy/MM/dd HH:mm:ss')}"></td>
                     </tr>
                 </tbody>
@@ -39,18 +39,18 @@
                 <form method="get" th:action="@{/post/search}">
                     <div class="input-group">
                         <div class="col-3">
-                            <select class="form-select" name="type">
+                            <select class="form-select bg-transparent border-dark" name="type">
                                 <option value="t">title</option>
                                 <option value="c">content</option>
                                 <option value="tc">title+content</option>
                                 <option value="a">author</option>
                             </select>
                         </div>
-                        <input class="form-control" id="keyword"
+                        <input class="form-control bg-transparent border-dark" id="keyword"
                             name="keyword" type="text"
                             placeholder="keyword"
-                            aria-describedby="btnSearch" required /> <input
-                            class="btn btn-warning" type="submit"
+                            aria-describedby="btnSearch" required /> 
+                            <input class="btn btn-warning bg-transparent border-dark" type="submit"
                             value="search" id="btnSearch" />
                     </div>
                 </form>

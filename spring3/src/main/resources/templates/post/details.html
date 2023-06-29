@@ -4,12 +4,12 @@
     layout:decorate="~{layout/base_layout}">
 
 <main layout:fragment="main">
-    <div class="my-2 card">
+    <div class="my-2 card border-dark bg-transparent">
         <div class="card-header text-center d-none">
             <h1>디테일 페이지</h1>
         </div>
         <div class="card-body">
-            <form id="postDeleteForm">
+            <form id="">
             	 <div>
                     <label class="form-label d-none" for="id">번호</label>
                     <input class="form-control d-none"
@@ -26,25 +26,30 @@
                 </div>
             </form>
             <div class="text-center mt-2">
-                <a class="btn btn-sm btn-warning"
-                    th:href="@{ /post/modify?id={id} (id = ${post.id})}">수정</a>
-                <a class="btn btn-sm btn-outline-warning"
-                    id="btnDelete">삭제</a>
+                <a class="btn btn-sm btn-warning text-uppercase font-monospace"
+                    th:href="@{ /post/modify?id={id} (id = ${post.id})}">modify</a>
             </div>
         </div>
     </div>
-    <div class="card">
-        <div class="card-header">
-            <span class="text-uppercase font-monospace">reply#</span>
-            <span class="text-uppercase font-monospace" id="replyCount" th:text="${replyCount}"></span>
-            <button class="btn btn-outline-warning btn-sm" id="btnToggleReply">보이기</button>
+    <div class="card border-dark bg-transparent">
+        <div class="card-header bg-transparent border-dark">
+            <span class="text-uppercase font-monospace fw-bold">reply#</span>
+            <span class="text-uppercase font-monospace fw-bold" id="replyCount" th:text="${replyCount}"></span>
+            <button class="btn btn-outline-warning btn-sm font-monospace" id="btnToggleReply" >SHOW</button>
         </div>    
-        <div class="card-body">
-            
+        <div class="card-body collapse" id="replyToggleDiv">
+            <div class="my-2 input-group text-uppercase font-monospace">
+                <input class="form-control bg-transparent border-warning" id="replyText" aria-describedby="btnReply" placeholder="Leave a comment here" />
+                <button class="btn btn-outline-warning text-uppercase font-monospace" 
+                    id="btnReplyCreate">save</button>
+            </div>
         </div>
+        <!-- 댓글 목록을 보여줄 영역 -->
+        <div class="mx-3 mb-1 row " id="replies"></div>
     </div>
 </main>
 <th:block layout:fragment="myscripts">
-	<script src="/js/post/delete.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/js/reply/reply.js"></script>
 </th:block>
 </html>

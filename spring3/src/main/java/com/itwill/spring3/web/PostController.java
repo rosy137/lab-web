@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.itwill.spring3.dto.PostCreateDto;
-import com.itwill.spring3.dto.PostSearchDto;
-import com.itwill.spring3.dto.PostUpdateDto;
+import com.itwill.spring3.dto.post.PostCreateDto;
+import com.itwill.spring3.dto.post.PostSearchDto;
+import com.itwill.spring3.dto.post.PostUpdateDto;
 import com.itwill.spring3.repository.post.Post;
 import com.itwill.spring3.repository.reply.Reply;
 import com.itwill.spring3.service.PostService;
@@ -64,8 +64,8 @@ public class PostController {
          model.addAttribute("post", post);
          
          // Replies 테이블에서 해당 포스트에 달린 댓글 개수를 검색
-         List<Reply> replyList = replyService.read(post);
-         model.addAttribute("replyCount", replyList.size());
+         long count = replyService.countByPost(post);
+         model.addAttribute("replyCount", count);
          
          // 컨트롤러 메서드의 리턴값이 없는 경우(void인 경우),
          // 뷰의 이름은 요청 주소와 같다!
