@@ -4,26 +4,26 @@
     layout:decorate="~{layout/base_layout}">
 
 <main layout:fragment="main">
-    <div class="my-2 card">
+    <div class="my-2 card bg-transparent border-dark" >
         <div class="card-header text-center d-none">
             <h1>새 포스트 작성 페이지</h1>
         </div>
         <div class="card-body">
             <form method="post">
                 <div class="my-2 form-floating">
-                    <input class="form-control" id="title" type="text"
+                    <input class="form-control bg-transparent border-dark" id="title" type="text"
                         name="title" placeholder="Leave a comment here"
                         required autofocus /> <label for="title">제목</label>
                 </div>
                 <div class="my-2 form-floating">
-                    <textarea class="form-control"
+                    <textarea class="form-control bg-transparent border-dark"
                         style="height: 300px;" id="content"
                         name="content"
                         placeholder="Leave a comment here" required></textarea>
                     <label for="content">내용</label>
                 </div>
                 <div class="my-2 form-floating">
-                    <textarea class="form-control" id="author"
+                    <textarea class="form-control bg-transparent border-dark" id="author"
                         name="author" placeholder="Leave a comment here"
                         required></textarea>
                     <label for="author">작성자</label>
