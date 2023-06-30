@@ -45,8 +45,8 @@ public class Reply extends BaseTimeEntity {
     @Column(nullable = false)
     private String writer; // 댓 작성자
     
-    public Reply update(ReplyUpdateDto dto) {
-        this.replyText = dto.getUpdateText();
+    public Reply update(String replyText) {
+        this.replyText = replyText;
         return this;
     }
 }

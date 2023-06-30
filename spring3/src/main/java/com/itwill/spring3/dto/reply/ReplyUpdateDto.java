@@ -5,6 +5,5 @@ import lombok.Data;
 @Data
 public class ReplyUpdateDto {
 
-    private long replyId;
-    private String updateText;
+    private String replyText;
 }

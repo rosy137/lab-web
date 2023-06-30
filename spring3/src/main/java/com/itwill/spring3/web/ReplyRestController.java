@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -46,11 +47,11 @@ public class ReplyRestController {
         return ResponseEntity.ok(reply);
     }
     
-    @PostMapping("/update")
-    public ResponseEntity<Reply> update(@RequestBody ReplyUpdateDto dto) {
-        log.info("update(dto={})", dto);
-        Reply reply = replyService.update(dto);
-        return ResponseEntity.ok(reply);
+    @PutMapping("/{id}")
+    public ResponseEntity<String> update(@PathVariable long id, @RequestBody ReplyUpdateDto dto) {
+        log.info("update(id={}, dto={})", id, dto);
+        replyService.update(id, dto);
+        return ResponseEntity.ok("Success");
     }
     
     @DeleteMapping("/{id}")

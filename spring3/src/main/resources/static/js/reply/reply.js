@@ -41,31 +41,31 @@ document.addEventListener('DOMContentLoaded', () => {
             .catch((error) => console.log(error)); // 실패 응답일 때
     }
     
-    const updateReply =(e) => {
+     const updateReply = (e) => {
         //console.log(e.target);
-        const replyId = e.target.getAttribute('data-id');
-        const textAreaId = `textarea#replyText_${replyId}`;
+        const replyId = e.target.getAttribute('data-id'); // 수정할 댓글 아이디
+        
+        const textAreaId = `textarea#replyText_${replyId}`; // 댓글 입력 textarea 아이디
         //console.log(document.querySelector(textAreaId));
-        const updateText = document.querySelector(textAreaId).value;
-                
-        if(updateText === ''){
-            alert('cannot input blank');
+        
+        // 수정할 댓글 내용
+        const replyText = document.querySelector(textAreaId).value;
+        if (replyText === '') { // 댓글 내용이 비어있으면
+            alert('cannot insert blank');
             return;
         }
         
-        const data = {replyId, updateText};
-
-        const reqUrl = '/api/reply/update';
-        
-         axios
-            .post(reqUrl,data)//Ajax POST 방식 요청을 보냄.
+        const reqUrl = `/api/reply/${replyId}`; // 요청 주소
+        const data = { replyText }; // {replyText: replyText}, 요청 데이터(수정할 댓글 내용)
+        axios
+            .put(reqUrl, data) // PUT 방식의 Ajax 요청을 보냄.
             .then((response) => {
                 console.log(response);
-                // 댓글목록 새로고침
-                getRepliesWithPostId();
-            }) //성공 응답(response)일 때 실행할 콜백 등록
-            .catch((error) => console.log(error)); //실패(error)일 때 실행할 콜백 등록.
-    }
+                // TODO:
+            }) // 성공 응답일 때 동작할 콜백을 등록.
+            .catch((error) => console.log(error)); // 에러 응답일 때 동작할 콜백을 등록.
+        
+    };
     
     const makeReplyElements = (data) => {
         // 댓글 개수를 배열의 원소 개수로 업데이트

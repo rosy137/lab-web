@@ -79,13 +79,16 @@ public class ReplyService {
         return entity;
     }
     
-    public Reply update(ReplyUpdateDto dto) {
+    @Transactional
+    //-> DB에서 검색한 Entity를 수정하면 transaction이 끝나는 시점에 update 쿼리가 자동으로 실횅
+    public void update(long id, ReplyUpdateDto dto) {
         log.info("update(dto={})", dto);
         
-        Reply reply = replyRepository.findById(dto.getReplyId()).orElseThrow();
+        //1. 댓글 아이디로 DB에서 엔터티 검색
+        Reply entity = replyRepository.findById(id).orElseThrow();
         
-        reply.update(dto);
-        return replyRepository.saveAndFlush(reply);
+        //2. 검색한 엔터티의 프로퍼티 수정
+        entity.update(dto.getReplyText());
     }
     
 }
