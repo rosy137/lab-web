@@ -38,14 +38,13 @@
                         logout</a> 
                     </li>
                 </th:block>
-                
                 <!-- 익명 사용자이면(로그아웃 상태이면) -->
                 <th:block sec:authorize="isAnonymous()">
                      <li class="nav-item">
-                        <a class="text-uppercase font-monospace nav-link link-dark" th:href="@{/signIn}">sign_in</a> 
+                        <a class="text-uppercase font-monospace nav-link link-dark" th:href="@{/member/signup}">sign-up</a> 
                     </li>
                     <li class="nav-item">
-                        <a class="text-uppercase font-monospace nav-link link-dark" th:href="@{/login}">login</a> 
+                        <a class="text-uppercase font-monospace nav-link link-dark" th:href="@{/login}">log-in</a> 
                     </li>
                 </th:block>
             </ul>
