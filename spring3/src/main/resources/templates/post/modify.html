@@ -33,7 +33,7 @@
                         id="author" th:value="${post.author}" readonly />
                 </div>
             </form>
-            <div class="text-center mt-2">
+            <div class="text-center mt-2" th:if="${post.author} == ${#authentication.name}">
                 <a class="btn btn-sm btn-warning" id="btnUpdate">수정 등록</a>
                 <a class="btn btn-sm btn-outline-warning" id="btnDelete">삭제</a>
             </div>

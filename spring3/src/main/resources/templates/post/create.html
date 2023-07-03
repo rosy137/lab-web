@@ -23,10 +23,9 @@
                     <label for="content">내용</label>
                 </div>
                 <div class="my-2 form-floating">
-                    <textarea class="form-control bg-transparent border-dark" id="author"
-                        name="author" placeholder="Leave a comment here"
-                        required></textarea>
-                    <label for="author">작성자</label>
+                    <input class="form-control bg-transparent border-dark d-none" id="author"
+                         name="author" th:value=" ${ #authentication.name }"
+                        required></input>
                 </div>
                 <div class="text-center">
                     <input class="btn btn-warning col-4" type="submit"

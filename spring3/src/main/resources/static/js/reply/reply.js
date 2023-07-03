@@ -3,6 +3,9 @@
  * 댓글 검색, 등록, 수정, 삭제
  */
 document.addEventListener('DOMContentLoaded', () => {
+    //  로그인한 사용자 이름
+    const authName = document.querySelector('input#authName').value;
+    
     // 부트스트랩 Collapse 객체를 생성. 초기 상태는 화면에 보이지 않는 상태.
     const bsCollapse = new bootstrap.Collapse('div#replyToggleDiv', {toggle: false});
     
@@ -87,14 +90,25 @@ document.addEventListener('DOMContentLoaded', () => {
                         <span class="fw-bold">#${reply.id}</span>
                         <span class="fw-bold">${reply.writer}</span>
                     </div>
+                    `;
+        // 로그인한 사용자와 댓글 작성자가 같을 때만 삭제, 수정 버튼 보여줌.
+        if (reply.writer === authName){
+            htmlStr += `
                     <div class="col text-end">
                         <button class="btnModify btn btn-sm btn-warning" data-id="${reply.id}">MOD</button>
                         <button class="btnDelete btn btn-sm btn-outline-warning" data-id="${reply.id}">DEL</button>
                     </div>
                 </div>
-                <textarea id="replyText_${reply.id}" class="my-2 form-control border-warning bg-transparent">${reply.replyText}</textarea>
+                    <textarea id="replyText_${reply.id}" class="my-2 form-control border-warning bg-transparent">${reply.replyText}</textarea>
+            </div>
+        `;
+        } else {
+            htmlStr += `
+                </div>
+                    <textarea id="replyText_${reply.id}" class="my-2 form-control border-warning bg-transparent" readonly>${reply.replyText}</textarea>
             </div>
             `;
+            }
         }
         
         //작성된 HTML 문자열을 div 요소의 innerHTML로 설정.
@@ -137,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // 댓글 내용
         const replyText = document.querySelector('input#replyText').value;
         // 댓글 작성자(나중에 로그인한 사요ㅕㅇ자)
-        const writer = 'admin';
+        const writer = authName;
         
         //alert(`${postId}, ${replyText}, ${writer}`);
         if(replyText === ''){
